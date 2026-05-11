@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>ETF 키워드 트렌드 분석 보고서 [뉴스] | 2026-05-06</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+         background: #f0f2f5; color: #1a1a2e; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 24px; }
+
+  /* 표지 */
+  .cover { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+            color: white; border-radius: 16px; padding: 48px 40px; margin-bottom: 32px; }
+  .cover h1 { font-size: 2em; font-weight: 700; margin-bottom: 8px; }
+  .cover .sub { font-size: 1.05em; opacity: 0.75; margin-bottom: 24px; }
+  .cover .meta { display: flex; gap: 32px; flex-wrap: wrap; }
+  .cover .meta-item { background: rgba(255,255,255,0.1); border-radius: 10px;
+                       padding: 12px 20px; }
+  .cover .meta-item .label { font-size: 0.75em; opacity: 0.7; margin-bottom: 4px; }
+  .cover .meta-item .value { font-size: 1em; font-weight: 600; }
+
+  /* 섹션 */
+  .section { background: white; border-radius: 12px; padding: 32px;
+              margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .section h2 { font-size: 1.25em; font-weight: 700; margin-bottom: 4px;
+                 color: #0f3460; border-left: 4px solid #4A90D9;
+                 padding-left: 12px; }
+  .section .desc { font-size: 0.88em; color: #666; margin-bottom: 20px;
+                    padding-left: 16px; }
+
+  /* 요약 카드 */
+  .cards { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+  .card { flex: 1; min-width: 150px; background: #f8f9fa; border-radius: 10px;
+           padding: 16px 20px; text-align: center; border: 1px solid #e9ecef; }
+  .card .num { font-size: 2em; font-weight: 800; color: #0f3460; }
+  .card .lbl { font-size: 0.8em; color: #888; margin-top: 4px; }
+
+  /* 테이블 */
+  table { width: 100%; border-collapse: collapse; font-size: 0.9em; }
+  th { background: #0f3460; color: white; padding: 10px 14px; text-align: left; }
+  td { padding: 9px 14px; border-bottom: 1px solid #f0f2f5; vertical-align: middle; }
+  tr:hover td { background: #f8f9fb; }
+
+  /* 인사이트 박스 */
+  .insight { background: #fffbea; border-left: 4px solid #f39c12;
+              border-radius: 0 8px 8px 0; padding: 14px 18px; margin-top: 16px;
+              font-size: 0.92em; line-height: 1.7; }
+  .insight strong { color: #e67e22; }
+
+  .tag { background: #e8f4fd; border: 1px solid #4A90D9; border-radius: 12px;
+          padding: 2px 10px; font-size: 0.82em; display: inline-block; margin: 2px; }
+
+  footer { text-align: center; color: #aaa; font-size: 0.8em; margin-top: 32px; padding: 16px; }
+</style>
+</head>
+<body>
+
+  <div style="background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;
+              padding:12px 16px;margin:0 auto 16px;max-width:900px;
+              font-family:Pretendard,'Noto Sans KR',sans-serif;font-size:0.9em;color:#78350f;">
+    📌 <strong>예시 결과물 (Anonymized)</strong> — 회사명·브랜드명은 익명 처리되었습니다.
+    실제 운영 파이프라인의 출력 구조와 동일합니다.
+    <span style="color:#a16207;">M 증권사 / M-ETF / K-ETF / S 자산운용 = 가상의 익명 브랜드</span>
+  </div>
+<div class="wrap">
+
+<!-- 표지 -->
+<div class="cover">
+  <div class="sub">네이버 뉴스 ETF 키워드 자동 발굴 · 트렌드 분석</div>
+  <h1>ETF 키워드 트렌드 분석 보고서 [뉴스] | 2026-05-06</h1>
+  <div class="meta">
+    <div class="meta-item">
+      <div class="label">보고서 작성일</div>
+      <div class="value">2026년 05월 06일 10:47</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">뉴스 수집 기간</div>
+      <div class="value">2026-04-28 ~ 2026-05-04 (1주)</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">DataLab 트렌드 기간</div>
+      <div class="value">2025-12-29 ~ 2026-05-04 (19주)</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">YouTube 수집</div>
+      <div class="value">0개 영상 (한국어, 최근 7일)</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">분석 방법</div>
+      <div class="value">TF-IDF · K-Means · LDA · DataLab 회귀 · YouTube</div>
+    </div>
+  </div>
+</div>
+
+<!-- 1. 분석 개요 -->
+<div class="section">
+  <h2>1. 분석 개요 및 방법론</h2>
+  <div class="desc">데이터 소스 · 수집 조건 · ML 파이프라인 · 트렌드 검증 구조 설명</div>
+
+  <table>
+    <tr><th width="220" colspan="2" style="background:#16213e;font-size:0.85em;letter-spacing:0.05em">① 데이터 수집</th></tr>
+    <tr><td>투입 시드 키워드</td>
+        <td><span class="tag">ETF</span> 단일 키워드 — ML이 연관 키워드 자동 발굴</td></tr>
+    <tr><td>뉴스 수집</td><td>네이버 뉴스 검색 API · sort=date 최신순 · 중복 sha1 제거<br>
+        <span style="color:#666;font-size:0.9em">수집 기간 2026-04-28 ~ 2026-05-04 | 수집 포스트 559개</span></td></tr>
+    <tr><td>YouTube 수집</td><td>YouTube Data API v3 (search + statistics) · 한국어 영상만 수집 (제목 한글 필터)<br>
+        <span style="color:#666;font-size:0.9em">최근 7일 | 수집 영상 0개 | 클러스터 상위 키워드 기반 쿼리 자동 구성</span></td></tr>
+    <tr><td>DataLab 검색량</td><td>네이버 DataLab 검색어 트렌드 API · 주간 단위<br>
+        <span style="color:#666;font-size:0.9em">조회 기간 2025-12-29 ~ 2026-05-04 (19주) | 5개 테마</span></td></tr>
+
+    <tr><th colspan="2" style="background:#16213e;font-size:0.85em;letter-spacing:0.05em">② 전처리 · 품질 필터링</th></tr>
+    <tr><td>텍스트 정제</td><td>BeautifulSoup HTML 제거 → 공백 정규화 → kiwipiepy 형태소 분석 (명사 NN* · 외국어 SL, 2자 이상)</td></tr>
+    <tr><td>규칙 필터</td><td>본문 길이 ≥ 150자 + ETF 관련 용어 1개 이상 포함</td></tr>
+    <tr><td>Proxy Score 필터</td><td>길이 점수(30%) + ETF 밀도(55%) + 비광고(15%) 합산 → 0.55 이상 통과<br>
+        <span style="color:#666;font-size:0.9em">광고 감지 어휘: 협찬·체험단·파트너스·원고료 등 15개</span></td></tr>
+
+    <tr><th colspan="2" style="background:#16213e;font-size:0.85em;letter-spacing:0.05em">③ ML 키워드 분석</th></tr>
+    <tr><td>벡터화</td><td>TF-IDF (min_df=3, max_df=0.60, max_features=300, token_pattern=\w+)</td></tr>
+    <tr><td>임베딩 (선택)</td><td>SentenceTransformer · paraphrase-multilingual-MiniLM-L12-v2<br>
+        <span style="color:#666;font-size:0.9em">미설치 또는 네트워크 차단 시 TF-IDF + SVD(LSA) 자동 fallback</span></td></tr>
+    <tr><td>클러스터링</td><td>K-Means · k=3~12 전수 탐색 · 실루엣 계수 최대화 → best k=10 (silhouette=0.188)<br>
+        <span style="color:#666;font-size:0.9em">클러스터 대표 키워드: 클러스터 내 TF-IDF 평균 상위 10개</span></td></tr>
+    <tr><td>토픽 모델링</td><td>LDA (n_components=10, random_state=42) · 토픽별 상위 10개 키워드 추출</td></tr>
+    <tr><td>버스트 키워드 감지</td><td>novelty_score = (현재 빈도 − 이전 기간 빈도) ÷ (이전 빈도 + 1)<br>
+        <span style="color:#666;font-size:0.9em">신규 등장 또는 급증 키워드 자동 감지 · results/burst_keywords.csv 저장</span></td></tr>
+
+    <tr><th colspan="2" style="background:#16213e;font-size:0.85em;letter-spacing:0.05em">④ 트렌드 검증</th></tr>
+    <tr><td>DataLab 선형회귀</td><td>OLS (scipy.stats.linregress) · slope·R²·p값 계산<br>
+        <span style="color:#666;font-size:0.9em">p &lt; 0.05 = 통계적 유의 (★) · slope &gt; 0 = 상승 추세</span></td></tr>
+    <tr><td>3중 교차 검증</td><td>뉴스 빈도 키워드 ↔ DataLab 검색량 ↔ YouTube 조회 키워드 공통 집합 → 핵심 트렌드 확정</td></tr>
+
+  </table>
+
+  <div class="insight">
+    <strong>분석 구조:</strong>
+    <span class="tag">ETF</span> 단일 키워드 투입 →
+    <strong>ML 자동 클러스터 발굴</strong> (뉴스 본문 TF-IDF + K-Means) →
+    <strong>DataLab 검색량 검증</strong> (선형회귀 추세) →
+    <strong>YouTube 트렌드 교차 확인</strong> (조회수 + 키워드 겹침) →
+    <strong>기간별 추이 분석</strong> (반복·신규·소멸 자동 분류)<br><br>
+    사람이 직접 키워드를 정의하는 기존 방식과 달리, ML이 뉴스 본문에서 의미 있는 클러스터를 자동 발굴하고
+    DataLab·YouTube 2개 소스로 교차 검증하므로 놓치기 쉬운 신흥 트렌드를 조기에 포착할 수 있습니다.
+  </div>
+</div>
+
+<!-- 2. 수집 및 전처리 결과 -->
+<div class="section">
+  <h2>2. 수집 · 전처리 결과</h2>
+  <div class="desc">원시 수집 → 본문 추출 → 정제 → 필터링 단계별 수치</div>
+
+  <div class="cards">
+    <div class="card"><div class="num">559</div><div class="lbl">수집 포스트 수</div></div>
+    <div class="card"><div class="num">30</div><div class="lbl">추출 키워드 수</div></div>
+    <div class="card"><div class="num">10</div><div class="lbl">최적 클러스터 수</div></div>
+    <div class="card"><div class="num">0.188</div><div class="lbl">실루엣 계수</div></div>
+  </div>
+
+  <div class="insight">
+    <strong>필터링 기준:</strong> 본문 길이 150자 이상 + 프록시 스코어 0.55 이상.
+    수집된 559개 전량 필터 통과 — ETF 단일 키워드 특성상 관련성 높은 포스트 위주로 수집됨.
+    <br><strong>실루엣 계수 0.188:</strong> 0.1 이상이면 의미 있는 분리로 판단 (금융 텍스트의 특성상 클러스터 경계가 모호할 수 있음).
+  </div>
+</div>
+
+<!-- 3. Top 20 키워드 -->
+<div class="section">
+  <h2>3. ML 자동 발굴 키워드 Top 20</h2>
+  <div class="desc">TF-IDF 벡터화 후 빈도수 기준 상위 20개 — ETF 단일 키워드에서 파생된 주요 연관어</div>
+  <div>                            <div id="13beddea-63a3-4060-a987-5cd9377f3902" class="plotly-graph-div" style="height:520px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("13beddea-63a3-4060-a987-5cd9377f3902")) {                    Plotly.newPlot(                        "13beddea-63a3-4060-a987-5cd9377f3902",                        [{"marker":{"color":"#4A90D9"},"orientation":"h","text":["131","134","141","144","149","153","157","157","163","171","178","180","193","201","219","242","280","402","430","487"],"textposition":"outside","x":[131,134,141,144,149,153,157,157,163,171,178,180,193,201,219,242,280,402,430,487],"y":["\uc0c1\ud488","\uc6b4\uc6a9","\uacc4\uc88c","\ubc18\ub3c4\uccb4","\uad6d\ub0b4","\uc99d\uad8c","\uc8fc\uc2dd","\uc218\uc775","\ud604\ubb3c","\uc790\uae08","\uc2dc\uc7a5","\ubbf8\uad6d","\uc720\uc785","\ube44\ud2b8\ucf54\uc778","\uc790\uc0b0","\ub2ec\ub7ec","\ud22c\uc790","\ud380\ub4dc","\uc9c0\uc218","\uc0c1\uc7a5"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"margin":{"l":120,"r":60},"title":{"text":"Top 20 \ucd94\ucd9c \ud0a4\uc6cc\ub4dc (\ube48\ub3c4\uc218)"},"height":520,"xaxis":{"title":{"text":"\ube48\ub3c4\uc218"}},"plot_bgcolor":"#f8f9fa"},                        {"responsive": true}                    )                };            </script>        </div>
+</div>
+
+<!-- 4. 클러스터 분석 -->
+<div class="section">
+  <h2>4. K-Means 클러스터 분석</h2>
+  <div class="desc">best k=10 (실루엣 최대화), 포스트 559개를 10개 의미 그룹으로 분류</div>
+
+  <div>                            <div id="4305ed3f-3efd-4ed9-a3f5-88b87f1255de" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("4305ed3f-3efd-4ed9-a3f5-88b87f1255de")) {                    Plotly.newPlot(                        "4305ed3f-3efd-4ed9-a3f5-88b87f1255de",                        [{"hole":0.35,"labels":["\ubc18\ub3c4\uccb4\u002f\ub808\ubc84\ub9ac\uc9c0\u002f\uc99d\uc2dc","\ube44\ud2b8\ucf54\uc778\u002f\ub2ec\ub7ec\u002f\ud604\ubb3c","\ud380\ub4dc\u002f\uc5f0\uae08\u002f\uc2a4\ud398\uc774\uc2a4","\ud380\ub4dc\u002f\uc790\ub140\u002f\uacc4\uc88c","\uc561\ud2f0\ube0c\u002f\ucf54\uc2a4\ub2e5\u002f\uc8fc\uc8fc","\uacf5\uc81c\u002f\uc120\ubb3c\ud658\u002f\ub9e4\ub3c4","\ud1b5\uc2e0\u002fai\u002f\ub124\ud2b8\uc6cc\ud06c","ls\u002f\uac1c\uc124\u002f\uacc4\uc88c"],"textinfo":"label+percent","textposition":"outside","values":[126,112,78,72,37,25,24,12],"type":"pie"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"title":{"text":"\ud074\ub7ec\uc2a4\ud130\ubcc4 \ud3ec\uc2a4\ud2b8 \ubd84\ud3ec (\ub178\uc774\uc988 \ud074\ub7ec\uc2a4\ud130 \uc81c\uc678)"},"height":500,"showlegend":false},                        {"responsive": true}                    )                };            </script>        </div>
+
+  <table style="margin-top:20px">
+    <thead>
+      <tr>
+        <th width="80">클러스터</th>
+        <th width="80">포스트 수</th>
+        <th>대표 키워드 (상위 10개)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td style="text-align:center;font-weight:bold">반도체/레버리지/증시<span style="background:#16a34a;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🆕 신규</span> </td>
+          <td style="text-align:center">126</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">반도체</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">레버리지</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">증시</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">종목</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">코스피</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">펀드</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">상승</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">투자</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">ai</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">매수</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">비트코인/달러/현물<span style="background:#d97706;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🔥 2주 연속</span> </td>
+          <td style="text-align:center">112</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">비트코인</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">달러</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">현물</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">유입</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">자금</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">xrp</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">미국</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">기관</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">btc</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">이더리움</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">펀드/연금/스페이스<span style="background:#16a34a;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🆕 신규</span> </td>
+          <td style="text-align:center">78</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">시장</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">펀드</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">연금</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">스페이스</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">자금</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">거래</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">퇴직</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">우주</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">상품</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">주식</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">펀드/자녀/계좌<span style="background:#16a34a;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🆕 신규</span> </td>
+          <td style="text-align:center">72</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">투자</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">주식</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">펀드</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">자녀</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">계좌</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">국내</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">삼성전자</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">성년자</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">증권사</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">투자자</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">M사/반도체/신한<span style="background:#d97706;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🔥 2주 연속</span> <span style="color:#999;font-size:0.85em">[노이즈]</span></td>
+          <td style="text-align:center">41</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">자산</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">운용</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">M사</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">반도체</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">신한</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">플러스</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">sol</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">top</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">ai</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">펀드</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">액티브/코스닥/주주<span style="background:#d97706;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🔥 2주 연속</span> </td>
+          <td style="text-align:center">37</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">액티브</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">코스닥</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">수익</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">주주</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">운용</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">연초</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">가치</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">이후</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">펀드</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">라이프</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">ria/이벤트/kb<span style="background:#16a34a;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🆕 신규</span> <span style="color:#999;font-size:0.85em">[노이즈]</span></td>
+          <td style="text-align:center">32</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">ria</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">이벤트</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">kb</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">증권</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">매수</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">운용사</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">계좌</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">실시</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">진행</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">복귀</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">공제/선물환/매도<span style="background:#16a34a;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🆕 신규</span> </td>
+          <td style="text-align:center">25</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">공제</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">해외</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">선물환</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">매도</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">한도</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">최대</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">상품</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">가입</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">소득</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">잔액</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">통신/ai/네트워크<span style="background:#16a34a;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🆕 신규</span> </td>
+          <td style="text-align:center">24</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">통신</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">ai</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">네트워크</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">수익</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">S 자산운용</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">k-etf</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">미국</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">기록</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">삼성</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">운용</span></td>
+        </tr>
+        <tr>
+          <td style="text-align:center;font-weight:bold">ls/개설/계좌<span style="background:#16a34a;color:#fff;border-radius:10px;padding:2px 8px;font-size:0.8em;font-weight:700;margin-left:6px;">🆕 신규</span> </td>
+          <td style="text-align:center">12</td>
+          <td><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">ls</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">개설</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">계좌</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">토스</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">증권</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">뱅크</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">서비스</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">채권</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">거래</span><span style="background:#e8f4fd;border:1px solid #4A90D9;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">대면</span></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>주요 발견:</strong><br>
+    · <strong>반도체/레버리지/증시 (126개)</strong> — 상위 키워드: 반도체, 레버리지, 증시, 종목, 코스피<br>
+    · <strong>비트코인/달러/현물 (112개)</strong> — 상위 키워드: 비트코인, 달러, 현물, 유입, 자금<br>
+    · <strong>펀드/연금/스페이스 (78개)</strong> — 상위 키워드: 시장, 펀드, 연금, 스페이스, 자금<br>
+    · <strong>펀드/자녀/계좌 (72개)</strong> — 상위 키워드: 투자, 주식, 펀드, 자녀, 계좌<br>
+    · <strong>액티브/코스닥/주주 (37개)</strong> — 상위 키워드: 액티브, 코스닥, 수익, 주주, 운용<br>
+    · <strong>공제/선물환/매도 (25개)</strong> — 상위 키워드: 공제, 해외, 선물환, 매도, 한도<br>
+    · <strong>통신/ai/네트워크 (24개)</strong> — 상위 키워드: 통신, ai, 네트워크, 수익, S 자산운용<br>
+    · <strong>ls/개설/계좌 (12개)</strong> — 상위 키워드: ls, 개설, 계좌, 토스, 증권
+  </div>
+</div>
+
+<!-- 5. LDA 토픽 모델링 -->
+<div class="section">
+  <h2>5. LDA 토픽 모델링</h2>
+  <div class="desc">LDA (n_components=10, random_state=42) · 블로그 본문 TF-IDF 기반 · 토픽별 상위 10개 키워드 추출</div>
+  <div style='color:#888;padding:20px;text-align:center'>LDA 분석 데이터를 불러올 수 없습니다. data/processed/filtered_docs.json 를 확인하세요.</div>
+</div>
+
+<!-- 6. 선형회귀 결과 -->
+<div class="section">
+  <h2>6. 선형회귀 분석 결과</h2>
+  <div class="desc">
+    각 테마의 주간 검색량에 OLS 선형회귀 적용. slope(기울기) &gt; 0 = 검색량 증가 추세.
+    p &lt; 0.05이면 통계적으로 유의미한 추세.
+  </div>
+
+  <div>                            <div id="f8195952-342c-4bcf-9ad8-acc408f37c08" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("f8195952-342c-4bcf-9ad8-acc408f37c08")) {                    Plotly.newPlot(                        "f8195952-342c-4bcf-9ad8-acc408f37c08",                        [{"marker":{"color":["#e74c3c","#e74c3c","#e74c3c","#e74c3c","#e74c3c"]},"orientation":"h","text":["slope=-0.612  R\u00b2=0.030  p=0.4798","slope=-0.581  R\u00b2=0.536  p=0.0004","slope=-0.190  R\u00b2=0.515  p=0.0005","slope=-0.044  R\u00b2=0.606  p=0.0001","slope=-0.028  R\u00b2=0.119  p=0.1472"],"textposition":"outside","x":{"dtype":"f8","bdata":"1edqK\u002faX479GlPYGX5jiv8pUwaikTsi\u002fQYLix5i7pr+vlGWIY12cvw=="},"y":["   ai\u002f\ubc18\ub3c4\uccb4\u002f\ud53c\uc9c0\uceec","\u2605 \ub2ec\ub7ec\u002f\ube44\ud2b8\ucf54\uc778\u002f\uc720\uc785","\u2605 \uc9c0\uc218\u002f\uc99d\uc2dc\u002f\ud380\ub4dc","\u2605 \uc5f0\uae08\u002f\ud63c\ud569\u002f\ud380\ub4dc","   \ud14c\ub9c8\u002f\ubbf8\ub798\uc5d0\uc14b\uc99d\uad8c\u002f\ucf54\ub9ac\uc544"],"type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"margin":{"l":220,"r":150},"title":{"text":"ETF \ud14c\ub9c8\ubcc4 \uc120\ud615\ud68c\uadc0 \uae30\uc6b8\uae30 (\u2605 = p\u003c0.05 \ud1b5\uacc4\uc801 \uc720\uc758)"},"xaxis":{"title":{"text":"\uae30\uc6b8\uae30 (slope)"}},"height":500,"plot_bgcolor":"#f8f9fa"},                        {"responsive": true}                    )                };            </script>        </div>
+
+  <table style="margin-top:20px">
+    <thead>
+      <tr>
+        <th>테마</th>
+        <th>기울기 (slope)</th>
+        <th>R²</th>
+        <th>p값</th>
+        <th>평균 검색량</th>
+        <th>방향</th>
+        <th>유의성 (p&lt;0.05)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td><strong>테마/M 증권사/코리아</strong></td>
+          <td style="color:#e74c3c;font-weight:bold">-0.0277</td>
+          <td>0.1195</td>
+          <td>0.1472</td>
+          <td>1.0</td>
+          <td>하락 ↓</td>
+          <td style="color:#e74c3c;font-weight:bold">불확실</td>
+        </tr>
+        <tr>
+          <td><strong>연금/혼합/펀드</strong></td>
+          <td style="color:#e74c3c;font-weight:bold">-0.0444</td>
+          <td>0.6063</td>
+          <td>0.0001</td>
+          <td>0.8</td>
+          <td>하락 ↓</td>
+          <td style="color:#27ae60;font-weight:bold">유의</td>
+        </tr>
+        <tr>
+          <td><strong>지수/증시/펀드</strong></td>
+          <td style="color:#e74c3c;font-weight:bold">-0.1899</td>
+          <td>0.5150</td>
+          <td>0.0005</td>
+          <td>2.4</td>
+          <td>하락 ↓</td>
+          <td style="color:#27ae60;font-weight:bold">유의</td>
+        </tr>
+        <tr>
+          <td><strong>달러/비트코인/유입</strong></td>
+          <td style="color:#e74c3c;font-weight:bold">-0.5811</td>
+          <td>0.5356</td>
+          <td>0.0004</td>
+          <td>7.7</td>
+          <td>하락 ↓</td>
+          <td style="color:#27ae60;font-weight:bold">유의</td>
+        </tr>
+        <tr>
+          <td><strong>ai/반도체/피지컬</strong></td>
+          <td style="color:#e74c3c;font-weight:bold">-0.6123</td>
+          <td>0.0298</td>
+          <td>0.4798</td>
+          <td>44.5</td>
+          <td>하락 ↓</td>
+          <td style="color:#e74c3c;font-weight:bold">불확실</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>핵심 인사이트:</strong><br>
+    · <strong>ai/반도체/피지컬 (slope=-0.61, R²=0.03)</strong> — 추세 불분명 — 변동성 구간, 지속 모니터링 필요<br>
+    · <strong>★ 달러/비트코인/유입 (slope=-0.58, R²=0.54)</strong> — 완만한 하락 — 기저 관심층 유지<br>
+    · <strong>★ 지수/증시/펀드 (slope=-0.19, R²=0.52)</strong> — 완만한 하락 — 기저 관심층 유지<br>
+    · <strong>★ 연금/혼합/펀드 (slope=-0.04, R²=0.61)</strong> — 완만한 하락 — 기저 관심층 유지<br>
+    · <strong>테마/M 증권사/코리아 (slope=-0.03, R²=0.12)</strong> — 추세 불분명 — 변동성 구간, 지속 모니터링 필요
+  </div>
+</div>
+
+<!-- 7. 종합 요약 -->
+<div class="section">
+  <h2>7. 종합 요약 및 시사점</h2>
+  <div class="desc">분석 결과 기반 투자자 관심 흐름 요약</div>
+
+  <table>
+    <thead>
+      <tr><th>구분</th><th>테마</th><th>검색 트렌드</th><th>해석</th></tr>
+    </thead>
+    <tbody>
+      
+        <tr>
+          <td>추세 불분명</td>
+          <td><span class="tag">테마/M 증권사/코리아</span><span class="tag">ai/반도체/피지컬</span></td>
+          <td>추세 불분명</td>
+          <td>변동성 구간, 방향성 미결정 — 지속 모니터링 필요</td>
+        </tr>
+        <tr>
+          <td>완만 감소</td>
+          <td><span class="tag">연금/혼합/펀드</span><span class="tag">지수/증시/펀드</span><span class="tag">달러/비트코인/유입</span></td>
+          <td>↓ 하락 (유의)</td>
+          <td>기저 관심층은 유지, 신규 유입 감소세</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div class="insight" style="margin-top:16px">
+    <strong>다음 액션 아이템:</strong><br>
+    1. <strong>테마/M 증권사/코리아, ai/반도체/피지컬</strong> — 추세 불분명. 다음 수집 시 방향성 재확인 필요<br>
+    2. <strong>매주 run_all.py 자동 실행</strong> → period 누적 시 기간별 비교 차트 자동 생성됨
+  </div>
+</div>
+
+<!-- 8. YouTube 트렌드 -->
+<div class="section">
+  <h2>8. YouTube 트렌드</h2>
+  <div class="desc">클러스터 키워드 기반 YouTube 영상 수집 · 조회수 상위 영상 · 뉴스와 겹치는 핵심 키워드 교차 검증</div>
+  <div style="color:#888;padding:20px;text-align:center">
+          YOUTUBE_API_KEY를 .env에 설정하고 run_youtube_trend.py를 실행하면 YouTube 트렌드가 표시됩니다.
+        </div>
+</div>
+
+<!-- 9. 기간별 키워드 추이 -->
+<div class="section">
+  <h2>9. 기간별 키워드 추이</h2>
+  <div class="desc">매주 누적되는 키워드 데이터 기반 — 반복 등장(핵심 트렌드) · 신규 부상 · 소멸 키워드 자동 분류</div>
+  
+    <div class="cards" style="margin-bottom:20px">
+      <div class="card"><div class="num">3</div><div class="lbl">누적 수집 횟수</div></div>
+      <div class="card"><div class="num">122</div><div class="lbl">반복 등장 키워드</div></div>
+      <div class="card"><div class="num">78</div><div class="lbl">이번 주 신규</div></div>
+      <div class="card"><div class="num">78</div><div class="lbl">소멸 (전주 대비)</div></div>
+    </div>
+
+    <h3 style="font-size:1em;color:#0f3460;margin:16px 0 8px">반복 등장 키워드 Top 20 (빈도 변화)</h3>
+    <table>
+      <thead>
+        <tr><th>키워드</th><th>이전 period 빈도</th><th>최신 period 빈도</th><th>변화</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>상장</strong></td>
+          <td style="text-align:center">739</td>
+          <td style="text-align:center">487</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -252</td>
+        </tr>
+        <tr>
+          <td><strong>지수</strong></td>
+          <td style="text-align:center">605</td>
+          <td style="text-align:center">430</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -175</td>
+        </tr>
+        <tr>
+          <td><strong>펀드</strong></td>
+          <td style="text-align:center">579</td>
+          <td style="text-align:center">402</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -177</td>
+        </tr>
+        <tr>
+          <td><strong>투자</strong></td>
+          <td style="text-align:center">588</td>
+          <td style="text-align:center">280</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -308</td>
+        </tr>
+        <tr>
+          <td><strong>달러</strong></td>
+          <td style="text-align:center">205</td>
+          <td style="text-align:center">242</td>
+          <td style="text-align:center;color:#27ae60;font-weight:bold">↑ +37</td>
+        </tr>
+        <tr>
+          <td><strong>자산</strong></td>
+          <td style="text-align:center">616</td>
+          <td style="text-align:center">219</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -397</td>
+        </tr>
+        <tr>
+          <td><strong>비트코인</strong></td>
+          <td style="text-align:center">150</td>
+          <td style="text-align:center">201</td>
+          <td style="text-align:center;color:#27ae60;font-weight:bold">↑ +51</td>
+        </tr>
+        <tr>
+          <td><strong>유입</strong></td>
+          <td style="text-align:center">214</td>
+          <td style="text-align:center">193</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -21</td>
+        </tr>
+        <tr>
+          <td><strong>미국</strong></td>
+          <td style="text-align:center">223</td>
+          <td style="text-align:center">180</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -43</td>
+        </tr>
+        <tr>
+          <td><strong>시장</strong></td>
+          <td style="text-align:center">352</td>
+          <td style="text-align:center">178</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -174</td>
+        </tr>
+        <tr>
+          <td><strong>자금</strong></td>
+          <td style="text-align:center">182</td>
+          <td style="text-align:center">171</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -11</td>
+        </tr>
+        <tr>
+          <td><strong>현물</strong></td>
+          <td style="text-align:center">261</td>
+          <td style="text-align:center">163</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -98</td>
+        </tr>
+        <tr>
+          <td><strong>주식</strong></td>
+          <td style="text-align:center">127</td>
+          <td style="text-align:center">157</td>
+          <td style="text-align:center;color:#27ae60;font-weight:bold">↑ +30</td>
+        </tr>
+        <tr>
+          <td><strong>수익</strong></td>
+          <td style="text-align:center">191</td>
+          <td style="text-align:center">157</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -34</td>
+        </tr>
+        <tr>
+          <td><strong>증권</strong></td>
+          <td style="text-align:center">44</td>
+          <td style="text-align:center">153</td>
+          <td style="text-align:center;color:#27ae60;font-weight:bold">↑ +109</td>
+        </tr>
+        <tr>
+          <td><strong>국내</strong></td>
+          <td style="text-align:center">298</td>
+          <td style="text-align:center">149</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -149</td>
+        </tr>
+        <tr>
+          <td><strong>반도체</strong></td>
+          <td style="text-align:center">261</td>
+          <td style="text-align:center">144</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -117</td>
+        </tr>
+        <tr>
+          <td><strong>계좌</strong></td>
+          <td style="text-align:center">36</td>
+          <td style="text-align:center">141</td>
+          <td style="text-align:center;color:#27ae60;font-weight:bold">↑ +105</td>
+        </tr>
+        <tr>
+          <td><strong>운용</strong></td>
+          <td style="text-align:center">500</td>
+          <td style="text-align:center">134</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -366</td>
+        </tr>
+        <tr>
+          <td><strong>상품</strong></td>
+          <td style="text-align:center">212</td>
+          <td style="text-align:center">131</td>
+          <td style="text-align:center;color:#e74c3c;font-weight:bold">↓ -81</td>
+        </tr></tbody>
+    </table>
+
+    <h3 style="font-size:1em;color:#27ae60;margin:20px 0 8px">이번 주 신규 등장 키워드</h3>
+    <div><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">LS</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">SOL</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">SoSoValue</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">가상</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">가입</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">가치</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">개설</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">경쟁</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">고객</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">공제</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">관심</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">국내외</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">규제</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">급증</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">기대</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">납부</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">네트워크</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">누적</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">뉴스</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">뉴욕</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">대상</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">대신증권</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">대형</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">동안</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">라이프</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">모건스탠리</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">미만</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">반등</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">발생</span><span style="background:#27ae6020;border:1px solid #27ae60;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">뱅크</span></div>
+
+    <h3 style="font-size:1em;color:#e74c3c;margin:20px 0 8px">소멸 키워드 (전주 대비)</h3>
+    <div><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">Fn</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">HANARO</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">IBK</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">ICE</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">IT</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">KoAct</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">Kodex</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">NH</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">RISE</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">가족</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">강세</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">강화</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">거래소</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">관리</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">구성</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">국제</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">국채</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">글로벌</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">기대감</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">기술</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">기존</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">기초</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">단기</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">단기채</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">단위</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">달성</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">라인업</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">랠리</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">로봇</span><span style="background:#e74c3c20;border:1px solid #e74c3c;border-radius:12px;padding:2px 8px;margin:2px;display:inline-block;font-size:0.85em">리스크</span></div>
+
+    <div class="insight" style="margin-top:16px">
+      <strong>해석 가이드:</strong>
+      반복 등장 키워드 = 지속적 관심 주제 (핵심 콘텐츠 후보) ·
+      신규 키워드 = 이번 주 새로 부상한 이슈 ·
+      소멸 키워드 = 관심 소멸 또는 계절성 이벤트 종료 신호
+    </div>
+</div>
+
+<!-- 10. AI 콘텐츠 아이디어 -->
+<div class="section">
+  <h2>10. AI 콘텐츠 아이디어</h2>
+  <div class="desc">ML 발굴 클러스터 키워드 → Claude AI가 자동 생성한 블로그/유튜브/SNS 제목 아이디어</div>
+  <div style="color:#888;padding:20px;text-align:center">
+          ANTHROPIC_API_KEY를 .env에 설정하면 AI가 클러스터 키워드 기반 콘텐츠 아이디어를 자동 생성합니다.
+        </div>
+</div>
+
+<footer>
+  ETF 키워드 자동 발굴 시스템 | 네이버 뉴스 + DataLab + YouTube | 생성: 2026년 05월 06일 10:47
+</footer>
+
+</div>
+</body>
+</html>

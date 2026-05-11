@@ -42,9 +42,30 @@
 
 ```
 .
-├── README.md            # 이 파일
-└── colab_practice.ipynb # 30분 세션 실습 노트북
+├── README.md             # 이 파일
+├── colab_practice.ipynb  # 30분 세션 실습 노트북
+└── examples/             # 실제 파이프라인 결과물 (회사명·브랜드명 익명화)
+    ├── 01_etf_trend_report_20260506.html   # 블로그 트렌드 리포트
+    ├── 02_etf_content_brief.html           # 블로그×뉴스 교차 분석
+    ├── 03_etf_trend_news_report_20260506.html  # 뉴스 트렌드 리포트
+    ├── 04_content_brief_report.html        # LLM 트렌드 브리프 (Top 5)
+    └── 05_content_ideas_report.html        # LLM 콘텐츠 아이디어
 ```
+
+## 🖼 결과물 예시 (HTML 미리보기)
+
+브라우저에서 바로 렌더링해서 보려면 아래 링크를 사용하세요.
+
+| 파일 | 미리보기 |
+|------|----------|
+| 블로그 트렌드 리포트 | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/01_etf_trend_report_20260506.html) |
+| 블로그×뉴스 교차 분석 | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/02_etf_content_brief.html) |
+| 뉴스 트렌드 리포트 | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/03_etf_trend_news_report_20260506.html) |
+| LLM 트렌드 브리프 (Top 5) | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/04_content_brief_report.html) |
+| LLM 콘텐츠 아이디어 | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/05_content_ideas_report.html) |
+
+> 📌 **회사명·브랜드명은 익명 처리되었습니다.**
+> `M 증권사`, `M-ETF`, `K-ETF`, `S 자산운용` 은 모두 가상의 익명 브랜드이며, 실제 파이프라인이 만들어내는 출력 구조와 동일합니다.
 
 ## 🛠 직접 실행이 막힐 때
 
