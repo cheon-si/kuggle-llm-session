@@ -4,7 +4,7 @@
 > 주제: **LLM 활용과 AI 자동화의 기초**
 > 멘토: 미래에셋증권 상품솔루션팀
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/__YOUR_USER__/__YOUR_REPO__/blob/main/colab_practice.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cheon-si/kuggle-llm-session/blob/main/colab_practice.ipynb)
 
 > ⬆️ 위 배지를 누르면 코랩이 바로 열립니다.
 > 오른쪽 상단 **`Copy to Drive`** 를 눌러 본인 드라이브에 사본을 만들고 따라하세요.
