@@ -52,20 +52,44 @@
     └── 05_content_ideas_report.html        # LLM 콘텐츠 아이디어
 ```
 
-## 🖼 결과물 예시 (HTML 미리보기)
-
-브라우저에서 바로 렌더링해서 보려면 아래 링크를 사용하세요.
-
-| 파일 | 미리보기 |
-|------|----------|
-| 블로그 트렌드 리포트 | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/01_etf_trend_report_20260506.html) |
-| 블로그×뉴스 교차 분석 | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/02_etf_content_brief.html) |
-| 뉴스 트렌드 리포트 | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/03_etf_trend_news_report_20260506.html) |
-| LLM 트렌드 브리프 (Top 5) | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/04_content_brief_report.html) |
-| LLM 콘텐츠 아이디어 | [열기](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/05_content_ideas_report.html) |
+## 🖼 결과물 미리보기 (스크롤만 하면 보임)
 
 > 📌 **회사명·브랜드명은 익명 처리되었습니다.**
 > `M 증권사`, `M-ETF`, `K-ETF`, `S 자산운용` 은 모두 가상의 익명 브랜드이며, 실제 파이프라인이 만들어내는 출력 구조와 동일합니다.
+
+### Step 4 — 블로그 트렌드 리포트
+
+<img src="examples/01_etf_trend_report_20260506.png" width="700" alt="블로그 트렌드 리포트" />
+
+### Step 9 — 블로그 × 뉴스 교차 분석
+
+<img src="examples/02_etf_content_brief.png" width="700" alt="블로그 × 뉴스 교차 분석" />
+
+### Step 4 (뉴스) — 뉴스 트렌드 리포트
+
+<img src="examples/03_etf_trend_news_report_20260506.png" width="700" alt="뉴스 트렌드 리포트" />
+
+### Step 10 — LLM 트렌드 브리프 (Top 5)
+
+<img src="examples/04_content_brief_report.png" width="700" alt="LLM 트렌드 브리프" />
+
+### Step 10 — LLM 콘텐츠 아이디어
+
+<img src="examples/05_content_ideas_report.png" width="700" alt="LLM 콘텐츠 아이디어" />
+
+---
+
+### 🔎 원본 HTML로 보고 싶을 때
+
+위 캡쳐는 페이지 상단만 잡힌 미리보기입니다. **전체 페이지를 스크롤하면서 보려면** 아래 링크 — 외부 프록시(`htmlpreview.github.io`)가 GitHub의 raw HTML을 브라우저에서 바로 렌더링해 줍니다.
+
+| # | 결과물 | 원본 HTML 열기 |
+|---|--------|----------------|
+| 01 | 블로그 트렌드 리포트 | [열기 ↗](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/01_etf_trend_report_20260506.html) |
+| 02 | 블로그 × 뉴스 교차 분석 | [열기 ↗](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/02_etf_content_brief.html) |
+| 03 | 뉴스 트렌드 리포트 | [열기 ↗](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/03_etf_trend_news_report_20260506.html) |
+| 04 | LLM 트렌드 브리프 (Top 5) | [열기 ↗](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/04_content_brief_report.html) |
+| 05 | LLM 콘텐츠 아이디어 | [열기 ↗](https://htmlpreview.github.io/?https://github.com/cheon-si/kuggle-llm-session/blob/main/examples/05_content_ideas_report.html) |
 
 ## 🛠 직접 실행이 막힐 때
 
