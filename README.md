@@ -118,10 +118,12 @@
 
 ## 📚 다음 단계
 
-- **Anthropic Cookbook**: https://github.com/anthropics/anthropic-cookbook
-- **Prompt Engineering Guide**: https://docs.anthropic.com/claude/docs/prompt-engineering
-- **Vector DB / RAG 입문**: https://www.pinecone.io/learn/
-- **실제 ETF 파이프라인 (멘토 베이스)**: 세션 슬라이드 Slide 13~17 참고
+- **Gemini API Docs**: https://ai.google.dev/gemini-api/docs
+- **Gemini Cookbook (예제 모음)**: https://github.com/google-gemini/cookbook
+- **Google AI Studio (Playground)**: https://aistudio.google.com
+- **Anthropic Prompt Engineering Guide**: https://docs.anthropic.com/claude/docs/prompt-engineering
+- **Vector DB / RAG 입문 (Pinecone Learn)**: https://www.pinecone.io/learn/
+- **실제 ETF 파이프라인 결과물**: [`examples/`](./examples/) (세션 슬라이드 Slide 13~17 참고)
 
 ## 💬 멘토 컨택
 
