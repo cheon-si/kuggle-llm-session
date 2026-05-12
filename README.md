@@ -15,26 +15,42 @@
 
 | STEP | 내용 | 핵심 |
 |------|------|------|
-| 1 | 환경 세팅 (`pip install anthropic`) | Colab Secrets로 API Key 등록 |
-| 2 | 첫 호출 — `messages.create()` 5줄 | LLM을 "함수"로 다루기 |
-| 3 | 프롬프트 엔지니어링 — `system` 한 줄 | 페르소나 + Structured Output (JSON) |
+| 1 | 환경 세팅 (`pip install google-genai`) | Colab Secrets로 API Key 등록 |
+| 2 | 첫 호출 — `generate_content()` 5줄 | LLM을 "함수"로 다루기 |
+| 3 | 프롬프트 엔지니어링 — `system_instruction` 한 줄 | 페르소나 + Structured Output (JSON) |
 | 4 | ML × LLM 결합 — 클러스터 자동 네이밍 | ETF 파이프라인 핵심 아이디어 재현 |
 
 ## 🔑 API Key 발급 가이드
 
-### 1순위: Anthropic Claude (수업 시연 기준)
-1. https://console.anthropic.com 접속 → 회원가입
-2. `API Keys` → `Create Key` → 발급된 `sk-ant-...` 복사
+### ✅ 권장: Google Gemini (카드 등록 없이 즉시 무료)
+1. https://aistudio.google.com 접속 → Google 로그인
+2. 좌측 `Get API key` → `Create API key` → 발급된 `AIza...` 복사
 3. 코랩 좌측 사이드바 🔑 자물쇠 → `+ Add new secret`
-   - Name: `ANTHROPIC_API_KEY`
+   - Name: `GOOGLE_API_KEY`
    - Value: 복사한 키 붙여넣기
    - **Notebook access 토글 ON**
 
-### 2순위: Google Gemini (카드 등록 불가 시 무료 대안)
-1. https://aistudio.google.com 접속 → Google 로그인
-2. `Get API key` → `Create API key`
-3. 코랩 Secrets에 `GOOGLE_API_KEY` 로 저장
-4. 노트북의 `anthropic` 호출 부분을 `google-generativeai`로 살짝 바꾸면 그대로 동작
+> 30분 세션 기준 — `gemini-2.5-flash` 모델은 무료 한도 안에서 충분히 실습 가능합니다.
+
+### 부록: Anthropic Claude로 바꾸고 싶다면
+1. https://console.anthropic.com 가입 → `API Keys` → `Create Key` (`sk-ant-...`)
+2. 코랩 Secrets에 `ANTHROPIC_API_KEY` 로 저장
+3. 노트북의 import / client / ask 함수만 아래로 교체 (나머지 동일):
+   ```python
+   # !pip install anthropic
+   import anthropic
+   client = anthropic.Anthropic()
+
+   def ask(prompt, system="한 줄로 답하라.", temperature=0.2):
+       r = client.messages.create(
+           model="claude-sonnet-4-5",
+           max_tokens=512,
+           temperature=temperature,
+           system=system,
+           messages=[{"role": "user", "content": prompt}],
+       )
+       return r.content[0].text
+   ```
 
 > ⚠️ **API Key는 절대 노트북에 하드코딩하지 마세요.** GitHub에 그대로 올라가면 제3자가 본인 크레딧을 다 써버릴 수 있습니다. **반드시 Colab Secrets** 사용.
 
@@ -96,9 +112,9 @@
 | 증상 | 해결 |
 |------|------|
 | `userdata.get` NameError | 코랩이 아닌 환경. 좌측 자물쇠 아이콘이 있는지 확인 |
-| `AuthenticationError` | Secrets 이름 오타 (`ANTHROPIC_API_KEY` 정확히) / Notebook access OFF |
-| `RateLimitError` | 무료 크레딧 소진. `claude-sonnet-4-5` → `claude-haiku-4-5`로 변경하면 비용 1/10 |
-| `json.loads` 실패 | LLM이 JSON 외 텍스트를 추가로 뱉음. `system` 프롬프트에 "JSON 외 어떤 텍스트도 금지" 강조 추가 |
+| `PermissionDenied` / `API key not valid` | Secrets 이름 오타 (`GOOGLE_API_KEY` 정확히) / Notebook access OFF |
+| `429 RESOURCE_EXHAUSTED` | 무료 분당 한도 초과. 잠시 대기하거나 `gemini-2.5-flash` → `gemini-2.5-flash-lite`로 변경 |
+| `json.loads` 실패 | LLM이 JSON 외 텍스트를 추가로 뱉음. `system_instruction`에 "JSON 외 어떤 텍스트도 금지" 강조 또는 `response_mime_type="application/json"` 옵션 사용 |
 
 ## 📚 다음 단계
 
