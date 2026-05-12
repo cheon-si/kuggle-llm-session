@@ -2,7 +2,7 @@
 
 > **건국대학교 응용통계학과 데이터사이언스 학회 Kuggle** 멘토 세션 (30분)
 > 주제: **LLM 활용과 AI 자동화의 기초**
-> 멘토: 미래에셋증권 상품솔루션팀
+
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cheon-si/kuggle-llm-session/blob/main/colab_practice.ipynb)
 
